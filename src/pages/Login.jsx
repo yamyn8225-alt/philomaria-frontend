@@ -191,15 +191,11 @@ function Login({ onLogin, goToRegister }) {
 
             <div className="login-logo">
 
-              <img
-
-                src={logo}
-
+             <img
+                src="/logo.png"
                 alt="منجلية فيلو ماريا"
-
                 className="logo-image"
-
-              />
+/>
 
             </div>
 
