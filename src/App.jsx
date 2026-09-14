@@ -27,6 +27,10 @@ import SubjectExams from "./pages/SubjectExams";
 import Exam from "./pages/Exam";
 
 
+// AI Assistant
+import AI from "./pages/AI";
+
+
 // Teacher
 import TeacherDashboard from "./pages/TeacherDashboard";
 import TeacherLessons from "./pages/TeacherLessons";
@@ -66,6 +70,7 @@ function ProtectedRoute({
   }
 
 
+
   const role =
     user.role?.toLowerCase();
 
@@ -89,6 +94,7 @@ function ProtectedRoute({
   return children;
 
 }
+
 
 
 
@@ -145,6 +151,7 @@ function App() {
 
     const savedUser =
       localStorage.getItem("user");
+
 
 
     if (!savedUser)
@@ -261,6 +268,7 @@ function App() {
     <Routes>
 
 
+
       <Route
         path="/"
         element={
@@ -280,22 +288,29 @@ function App() {
       <Route
         path="/login"
         element={
+
           currentUser
+
           ?
+
           <Navigate
             to={
               getHomeRoute(currentUser)
             }
           />
+
           :
+
           <Login
             onLogin={handleLogin}
             goToRegister={
               () => navigate("/register")
             }
           />
+
         }
       />
+
 
 
 
@@ -338,6 +353,23 @@ function App() {
           />
         }
       >
+
+
+
+        {/* AI Assistant */}
+
+        <Route
+          path="/ai"
+          element={
+            <ProtectedRoute
+              user={currentUser}
+            >
+              <AI />
+            </ProtectedRoute>
+          }
+        />
+
+
 
 
 
@@ -421,6 +453,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
 
 
 
@@ -524,6 +557,7 @@ function App() {
         />
 
 
+
         <Route
           path="/teacher/lessons"
           element={
@@ -537,6 +571,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
 
 
         <Route
@@ -554,6 +589,7 @@ function App() {
         />
 
 
+
         <Route
           path="/teacher/exams"
           element={
@@ -567,7 +603,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
 
 
 
@@ -591,6 +626,7 @@ function App() {
         />
 
 
+
         <Route
           path="/admin/users"
           element={
@@ -604,6 +640,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
 
 
         <Route
@@ -669,6 +706,7 @@ function App() {
           />
         }
       />
+
 
 
     </Routes>

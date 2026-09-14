@@ -4014,3 +4014,258 @@ font-size:26px;
 
 
 }
+/* ==========================
+   Orthodox AI Chat
+========================== */
+
+.ai-chat {
+  width: 90%;
+  max-width: 1000px;
+  height: 650px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+/* Chat messages area */
+
+.ai-body {
+
+  flex: 1;
+  padding: 30px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  background: #f6f8fb;
+
+}
+
+
+
+/* Each message */
+
+.ai-message {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  max-width: 80%;
+
+}
+
+
+
+/* User message */
+
+.ai-message.user {
+
+  margin-right: auto;
+
+  flex-direction: row-reverse;
+
+}
+
+
+
+/* Assistant message */
+
+.ai-message.assistant {
+
+  margin-left: auto;
+
+}
+
+
+
+/* Avatar */
+
+.ai-avatar {
+
+  width:45px;
+
+  height:45px;
+
+  border-radius:50%;
+
+  background:#1d4668;
+
+  color:white;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:22px;
+
+  flex-shrink:0;
+
+}
+
+
+
+/* Bubble */
+
+.ai-bubble {
+
+  padding:16px 22px;
+
+  border-radius:20px;
+
+  font-size:18px;
+
+  line-height:2;
+
+  white-space:pre-line;
+
+}
+
+
+/* Assistant bubble */
+
+.ai-message.assistant .ai-bubble {
+
+  background:white;
+
+  color:#16324f;
+
+  border-top-right-radius:5px;
+
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+
+
+/* User bubble */
+
+.ai-message.user .ai-bubble {
+
+  background:#fbb21b;
+
+  color:white;
+
+  border-top-left-radius:5px;
+
+}
+
+
+
+/* Input area */
+
+.chat-input-area {
+
+  display:flex;
+
+  padding:20px;
+
+  background:white;
+
+  border-top:1px solid #eee;
+
+  gap:15px;
+
+}
+
+
+
+.chat-input-area input {
+
+  flex:1;
+
+  height:55px;
+
+  border-radius:30px;
+
+  border:1px solid #ddd;
+
+  padding:0 25px;
+
+  font-size:17px;
+
+  outline:none;
+
+  text-align:right;
+
+}
+
+
+
+.chat-input-area input:focus {
+
+  border-color:#fbb21b;
+
+}
+
+
+
+
+.chat-input-area button {
+
+  width:60px;
+
+  height:55px;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:#fbb21b;
+
+  color:white;
+
+  font-size:25px;
+
+  cursor:pointer;
+
+}
+
+
+
+.chat-input-area button:hover {
+
+  background:#e39b00;
+
+}
+
+
+
+/* Page title */
+
+.page-title {
+
+  text-align:center;
+
+  margin-top:30px;
+
+  color:#16324f;
+
+  font-size:38px;
+
+}
+
+
+
+.page-subtitle {
+
+  text-align:center;
+
+  color:#666;
+
+  font-size:18px;
+
+}
