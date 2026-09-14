@@ -1,51 +1,25 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
 
-
 function Login({ onLogin, goToRegister }) {
 
-
-  const [email,setEmail] = useState("");
-
-  const [password,setPassword] = useState("");
-
-  const [error,setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
 
 
-
-
-
-  function handleSubmit(e){
-
+  function handleSubmit(e) {
 
     e.preventDefault();
-
     setError("");
 
+    if (!email.trim() || !password.trim()) {
 
-
-
-
-    // Validation
-
-    if(!email.trim() || !password.trim()){
-
-
-      setError(
-        "من فضلك أدخل البريد الإلكتروني وكلمة المرور"
-      );
-
-
+      setError("من فضلك أدخل البريد الإلكتروني وكلمة المرور");
       return;
 
     }
-
-
-
-
-
-
 
 
 
@@ -53,85 +27,41 @@ function Login({ onLogin, goToRegister }) {
     // ADMIN LOGIN
     // ==========================
 
-
-    if(
-
-      email.trim() === "admin@test.com"
-
-      &&
-
+    if (
+      email.trim() === "admin@test.com" &&
       password === "123456"
-
-    ){
-
-
+    ) {
 
       const admin = {
 
-
-        id:1,
-
-
-        name:"مدير المنصة",
-
-
-        email:"admin@test.com",
-
-
-        role:"admin"
-
-
+        id: 1,
+        name: "مدير المنصة",
+        email: "admin@test.com",
+        role: "admin"
 
       };
-
-
-
 
 
       localStorage.removeItem("user");
 
 
-
-
-
       localStorage.setItem(
-
         "user",
-
         JSON.stringify(admin)
-
       );
-
-
-
 
 
       localStorage.setItem(
-
         "token",
-
         "token"
-
       );
-
-
-
 
 
       onLogin(admin);
 
-
-
       return;
 
-
-
     }
-
-
-
-
-
 
 
 
@@ -141,166 +71,70 @@ function Login({ onLogin, goToRegister }) {
     // ==========================
 
 
-
     const users =
-
-
-      JSON.parse(
-
-        localStorage.getItem("users")
-
-      ) || [];
-
-
-
-
-
-
+      JSON.parse(localStorage.getItem("users")) || [];
 
 
 
     const user = users.find(
 
-
       item =>
 
-
-      item.email.toLowerCase() ===
-
-      email.toLowerCase()
-
+      item.email.toLowerCase() === email.toLowerCase()
 
       &&
 
-
       item.password === password
-
-
 
     );
 
 
 
-
-
-
-
-
-
-    if(!user){
-
-
+    if (!user) {
 
       setError(
-
         "البريد الإلكتروني أو كلمة المرور غير صحيحة"
-
       );
 
-
       return;
-
-
 
     }
 
 
 
-
-
-
-
-
-
     const loginUser = {
 
-
-
-      id:user.id,
-
-
-
-      name:user.name,
-
-
-
-      email:user.email,
-
-
-
-      phone:user.phone,
-
-
-
-      profileImage:user.profileImage,
-
-
-
-      role:user.role,
-
-
-
-      subjects:user.subjects || [],
-
-
-
-      years:user.years || []
-
-
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      profileImage: user.profileImage,
+      role: user.role,
+      subjects: user.subjects || [],
+      years: user.years || []
 
     };
 
 
 
-
-
-
-
-
-
     localStorage.setItem(
-
-
       "user",
-
-
       JSON.stringify(loginUser)
-
-
     );
-
-
-
-
-
-
-
 
 
     localStorage.setItem(
-
-
       "token",
-
-
       "token"
-
-
     );
-
-
-
-
-
-
-
 
 
     onLogin(loginUser);
 
-
-
   }
+
+
+
   return (
 
     <div
@@ -317,7 +151,6 @@ function Login({ onLogin, goToRegister }) {
 
         <div className="login-info">
 
-
           <div className="login-overlay">
 
 
@@ -332,11 +165,9 @@ function Login({ onLogin, goToRegister }) {
 
 
             <p>
-
               تعلم الدروس الروحية،
               تابع الدروس والاختبارات،
               وكن جزءاً من مجتمع تعليمي متكامل.
-
             </p>
 
 
@@ -344,7 +175,6 @@ function Login({ onLogin, goToRegister }) {
 
 
         </div>
-
 
 
 
@@ -361,26 +191,23 @@ function Login({ onLogin, goToRegister }) {
 
             <div className="login-logo">
 
-
               <img
 
                 src={logo}
 
                 alt="منجلية فيلو ماريا"
 
-              />
+                className="logo-image"
 
+              />
 
             </div>
 
 
 
 
-
             <h1>
-
               أهلاً بعودتك
-
             </h1>
 
 
@@ -396,10 +223,6 @@ function Login({ onLogin, goToRegister }) {
 
 
 
-
-
-
-
             <form onSubmit={handleSubmit}>
 
 
@@ -407,9 +230,7 @@ function Login({ onLogin, goToRegister }) {
 
 
                 <label>
-
                   البريد الإلكتروني
-
                 </label>
 
 
@@ -422,9 +243,7 @@ function Login({ onLogin, goToRegister }) {
                   value={email}
 
                   onChange={(e)=>
-
                     setEmail(e.target.value)
-
                   }
 
                 />
@@ -436,17 +255,11 @@ function Login({ onLogin, goToRegister }) {
 
 
 
-
-
-
-
               <div className="input-box">
 
 
                 <label>
-
                   كلمة المرور
-
                 </label>
 
 
@@ -459,9 +272,7 @@ function Login({ onLogin, goToRegister }) {
                   value={password}
 
                   onChange={(e)=>
-
                     setPassword(e.target.value)
-
                   }
 
                 />
@@ -473,32 +284,15 @@ function Login({ onLogin, goToRegister }) {
 
 
 
-
-
-
-
               {
-
-
                 error &&
 
-                (
+                <div className="login-error">
 
-                  <div className="login-error">
+                  {error}
 
-                    {error}
-
-                  </div>
-
-
-                )
-
-
+                </div>
               }
-
-
-
-
 
 
 
@@ -519,14 +313,7 @@ function Login({ onLogin, goToRegister }) {
 
 
 
-
-
-
             </form>
-
-
-
-
 
 
 
@@ -536,7 +323,6 @@ function Login({ onLogin, goToRegister }) {
 
 
               ليس لديك حساب؟
-
 
 
               <button
@@ -558,13 +344,12 @@ function Login({ onLogin, goToRegister }) {
 
 
 
-
-
           </div>
 
 
 
         </div>
+
 
 
 
@@ -577,9 +362,7 @@ function Login({ onLogin, goToRegister }) {
 
   );
 
-
 }
-
 
 
 export default Login;
