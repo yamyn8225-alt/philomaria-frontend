@@ -1,44 +1,26 @@
 import { useState } from "react";
 
-
 function Register({ onRegister, goToLogin }) {
-
 
   const [formData,setFormData] = useState({
 
     name:"",
-
     phone:"",
-
     email:"",
-
     password:"",
-
     year:"",
-
-    parentName:"",
-
-    parentPhone:"",
-
     profileImage:""
 
   });
-
 
 
   const [error,setError] = useState("");
 
 
 
-
-
-
-
   function handleChange(e){
 
-
     const {name,value} = e.target;
-
 
     setFormData(prev=>({
 
@@ -52,44 +34,27 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
-
-
   function handleImageChange(e){
-
 
     const file = e.target.files[0];
 
-
     if(!file)
-
       return;
-
 
 
     if(!file.type.startsWith("image/")){
 
-
-      setError(
-        "من فضلك اختر صورة فقط"
-      );
-
+      setError("من فضلك اختر صورة فقط");
 
       return;
 
     }
 
 
-
-
-
     const reader = new FileReader();
 
 
-
     reader.onload = ()=>{
-
 
       setFormData(prev=>({
 
@@ -99,85 +64,51 @@ function Register({ onRegister, goToLogin }) {
 
       }));
 
-
     };
 
 
-
     reader.readAsDataURL(file);
-
 
   }
 
 
 
 
-
-
-
-
-
   function handleSubmit(e){
 
-
     e.preventDefault();
-
 
     setError("");
 
 
 
-
-
     const {
-
       name,
-
       phone,
-
       email,
-
       password,
-
       year
-
 
     } = formData;
 
 
 
 
-
-
-
     if(
-
       !name ||
-
       !phone ||
-
       !email ||
-
       !password ||
-
       !year
-
     ){
 
-
       setError(
-
         "من فضلك أكمل البيانات المطلوبة"
-
       );
-
 
       return;
 
     }
-
-
-
 
 
 
@@ -185,58 +116,36 @@ function Register({ onRegister, goToLogin }) {
 
     const users =
 
-
       JSON.parse(
-
         localStorage.getItem("users")
-
       ) || [];
 
 
 
 
 
+    const exists = users.find(
 
+      user=>
 
-    const exists =
+      user.email.toLowerCase()
+      ===
+      email.toLowerCase()
 
-
-      users.find(
-
-        user =>
-
-        user.email.toLowerCase()
-
-        ===
-
-        email.toLowerCase()
-
-      );
-
-
-
+    );
 
 
 
 
     if(exists){
 
-
       setError(
-
         "هذا البريد الإلكتروني مستخدم بالفعل"
-
       );
-
 
       return;
 
-
     }
-
-
-
-
 
 
 
@@ -247,44 +156,23 @@ function Register({ onRegister, goToLogin }) {
 
       id:Date.now(),
 
-
       name,
-
 
       phone,
 
-
       email,
-
 
       password,
 
 
-
       profileImage:
-
       formData.profileImage,
-
 
 
       year,
 
 
-
-      parentName:
-
-      formData.parentName,
-
-
-
-      parentPhone:
-
-      formData.parentPhone,
-
-
-
       role:"student",
-
 
 
       subjects:[],
@@ -293,9 +181,7 @@ function Register({ onRegister, goToLogin }) {
       years:[year],
 
 
-
       createdAt:
-
       new Date().toLocaleDateString("ar-EG")
 
 
@@ -305,22 +191,13 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
-
-
     const updatedUsers = [
-
 
       ...users,
 
-
       newUser
 
-
     ];
-
-
 
 
 
@@ -337,39 +214,24 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
-
-
     onRegister({
-
 
       id:newUser.id,
 
-
       name:newUser.name,
-
 
       email:newUser.email,
 
-
       profileImage:
-
       newUser.profileImage,
-
 
       role:newUser.role,
 
-
       subjects:newUser.subjects,
-
 
       years:newUser.years
 
-
     });
-
-
 
 
   }
@@ -378,19 +240,11 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
-
-
   return (
 
-
     <div
-
       className="auth-page"
-
       dir="rtl"
-
     >
 
 
@@ -400,35 +254,22 @@ function Register({ onRegister, goToLogin }) {
 
         <div className="auth-logo">
 
-
           <div className="cross">
-
             ✝
-
           </div>
 
 
-
           <h1>
-
             منجلية فيلو ماريا
-
           </h1>
 
 
-
           <p>
-
             إنشاء حساب جديد
-
           </p>
 
 
         </div>
-
-
-
-
 
 
 
@@ -439,11 +280,8 @@ function Register({ onRegister, goToLogin }) {
 
           <div className="form-group">
 
-
             <label>
-
               الصورة الشخصية
-
             </label>
 
 
@@ -459,11 +297,7 @@ function Register({ onRegister, goToLogin }) {
 
             />
 
-
           </div>
-
-
-
 
 
 
@@ -472,9 +306,7 @@ function Register({ onRegister, goToLogin }) {
           <div className="form-group">
 
             <label>
-
               الاسم بالكامل
-
             </label>
 
 
@@ -496,18 +328,11 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
-
           <div className="form-group">
 
-
             <label>
-
               رقم الهاتف
-
             </label>
-
 
 
             <input
@@ -522,11 +347,7 @@ function Register({ onRegister, goToLogin }) {
 
             />
 
-
           </div>
-
-
-
 
 
 
@@ -534,13 +355,9 @@ function Register({ onRegister, goToLogin }) {
 
           <div className="form-group">
 
-
             <label>
-
               البريد الإلكتروني
-
             </label>
-
 
 
             <input
@@ -557,11 +374,7 @@ function Register({ onRegister, goToLogin }) {
 
             />
 
-
           </div>
-
-
-
 
 
 
@@ -569,13 +382,9 @@ function Register({ onRegister, goToLogin }) {
 
           <div className="form-group">
 
-
             <label>
-
               السنة الدراسية
-
             </label>
-
 
 
             <select
@@ -590,42 +399,29 @@ function Register({ onRegister, goToLogin }) {
 
             >
 
-
               <option value="">
-
                 اختر السنة
-
               </option>
 
 
               <option value="السنة الأولى">
-
                 السنة الأولى
-
               </option>
 
 
               <option value="السنة الثانية">
-
                 السنة الثانية
-
               </option>
 
 
               <option value="السنة الثالثة">
-
                 السنة الثالثة
-
               </option>
 
 
             </select>
 
-
           </div>
-
-
-
 
 
 
@@ -633,79 +429,9 @@ function Register({ onRegister, goToLogin }) {
 
           <div className="form-group">
 
-
             <label>
-
-              اسم ولي الأمر
-
-            </label>
-
-
-
-            <input
-
-              className="form-input"
-
-              name="parentName"
-
-              value={formData.parentName}
-
-              onChange={handleChange}
-
-            />
-
-
-          </div>
-
-
-
-
-
-
-
-
-          <div className="form-group">
-
-
-            <label>
-
-              رقم ولي الأمر
-
-            </label>
-
-
-
-            <input
-
-              className="form-input"
-
-              name="parentPhone"
-
-              value={formData.parentPhone}
-
-              onChange={handleChange}
-
-            />
-
-
-          </div>
-
-
-
-
-
-
-
-
-          <div className="form-group">
-
-
-            <label>
-
               كلمة المرور
-
             </label>
-
 
 
             <input
@@ -722,11 +448,7 @@ function Register({ onRegister, goToLogin }) {
 
             />
 
-
           </div>
-
-
-
 
 
 
@@ -742,10 +464,7 @@ function Register({ onRegister, goToLogin }) {
 
             </div>
 
-
           }
-
-
 
 
 
@@ -765,12 +484,7 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
-
         </form>
-
-
-
 
 
 
@@ -802,17 +516,14 @@ function Register({ onRegister, goToLogin }) {
 
 
 
-
       </div>
 
 
     </div>
 
-
   );
 
 }
-
 
 
 export default Register;
